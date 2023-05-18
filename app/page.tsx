@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -9,7 +10,6 @@ import {
 import { name, about, bio, avatar } from 'lib/info';
 // import TanMania from '../public/tanmania_webp/1webp.webp';
 export const revalidate = 60;
-import fs from 'fs';
 import glob from 'glob';
 import PortopolioData from './data/data.json'
 
@@ -17,7 +17,7 @@ export default async function HomePage() {
   const jsonData = PortopolioData;
   let starCount, views, tweetCount;
 
-  
+ 
 
   return (
     <section>
