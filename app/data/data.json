@@ -1,0 +1,16 @@
+[
+    {
+        "projectName": "pingo",
+        "containerColor":"bg-blue-500",
+        "textColor":"text-white",
+        "description": "Pingo is an open source Android application that combines the best of social media, travel exploration, and advanced image editing capabilities. Built using C++ and OpenCV, this cutting-edge app offers a seamless and powerful experience for travel enthusiasts who love capturing and sharing their adventures in stunning visuals."
+    },
+    {
+        "projectName": "tanmania",
+        "containerColor":"bg-orange-300",
+        "textColor":"text-black",
+        "description": "Tanmania is a sophisticated Flutter application designed to revolutionize your dining experience. With its seamless restaurant booking system and customer reward program, DineEase takes the hassle out of finding and reserving a table while treating you to exclusive perks. Coupled with its stunning design, this app promises to enhance your culinary journey like never before."
+    }
+    
+]
+

@@ -14,12 +14,12 @@ const navItems = {
   '/about': {
     name: 'about',
   },
-  '/blog': {
-    name: 'blog',
-  },
-  '/guestbook': {
-    name: 'guestbook',
-  },
+  // '/blog': {
+  //   name: 'blog',
+  // },
+  // '/guestbook': {
+  //   name: 'guestbook',
+  // },
 };
 
 function Logo() {
@@ -124,4 +124,13 @@ export default function Navbar() {
       </div>
     </aside>
   );
+}
+
+
+function PingoView(){
+  return(
+    <div>
+
+    </div>
+  )
 }
