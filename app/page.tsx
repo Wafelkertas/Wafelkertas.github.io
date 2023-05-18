@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBlogViews, getTweetCount, getStarCount } from 'lib/metrics';
 import {
   ArrowIcon,
   GitHubIcon,
@@ -18,15 +17,7 @@ export default async function HomePage() {
   const jsonData = PortopolioData;
   let starCount, views, tweetCount;
 
-  try {
-    [starCount, views, tweetCount] = await Promise.all([
-      getStarCount(),
-      getBlogViews(),
-      getTweetCount(),
-    ]);
-  } catch (error) {
-    console.error(error);
-  }
+  
 
   return (
     <section>
@@ -71,7 +62,7 @@ const getImageFiles = (projectName: string) => {
   const imageFiles = glob.sync(`${imageFolderPath}/*.{jpg,jpeg,png,gif,svg,webp}`);
 
   return imageFiles.map((fileName) => {
-    // console.log(`${fileName}`)
+    
     return `/../${fileName}`
   });
 
