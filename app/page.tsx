@@ -63,7 +63,9 @@ const getImageFiles = (projectName: string) => {
 
   return imageFiles.map((fileName) => {
     
-    return `/../${fileName}`
+    const cleanedPath = fileName.replace("public/", "");
+    console.log(cleanedPath)
+    return `/${cleanedPath}`
   });
 
 };
