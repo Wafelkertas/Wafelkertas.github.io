@@ -8,7 +8,8 @@ import {
   ViewsIcon,
 } from 'components/icons';
 import { name, about, bio, avatar } from 'lib/info';
-// import TanMania from '../public/tanmania_webp/1webp.webp';
+
+// import TanMania from '../docs/assets/';
 export const revalidate = 60;
 import glob from 'glob';
 import PortopolioData from './data/data.json'
@@ -57,13 +58,13 @@ interface PortopolioProps {
 }
 const getImageFiles = (projectName: string) => {
 
-  const imageFolderPath = `public/${projectName}/`;
+  const imageFolderPath = `../docs/assets/${projectName}/`;
 
   const imageFiles = glob.sync(`${imageFolderPath}/*.{jpg,jpeg,png,gif,svg,webp}`);
 
   return imageFiles.map((fileName) => {
     
-    const cleanedPath = fileName.replace("public/", "");
+    const cleanedPath = fileName.replace("../docs/assets/", "");
     console.log(`/${cleanedPath}`)
     return `/${cleanedPath}`
   });
