@@ -1,10 +1,13 @@
 const { get } = require('@vercel/edge-config');
 const { withContentlayer } = require('next-contentlayer');
+const withImages = require('next-images');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
+    // loader: 'custom',
+    // loaderFile: './app/image_loader/image_loader.ts',
   },
   experimental: {
     appDir: true,
@@ -74,5 +77,6 @@ const securityHeaders = [
     value: 'camera=(), microphone=(), geolocation=()',
   },
 ];
+
 
 module.exports = withContentlayer(nextConfig);
