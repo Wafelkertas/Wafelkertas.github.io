@@ -15,53 +15,51 @@ export const revalidate = 60;
 import glob from 'glob';
 import PortopolioData from './data/data.json'
 import React from 'react';
-import { CloudinaryImage } from './models/CloudinaryImage';
+import { CloudinaryImage, Folder, Resource } from './models/CloudinaryImage';
 import type { InferGetStaticPropsType, GetStaticProps } from 'next';
 // import base64 from 'base-64';
 
-const getStaticProps: GetStaticProps<{
-  cloudinaryImage: CloudinaryImage;
-}> = async () => {
-  let username = '265794696117814';
-  let password = 'eDqfVeaLSlzrGFe0JvNWGL1rAAE';
+// const getStaticProps: GetStaticProps<{
+//   cloudinaryImage: CloudinaryImage;
+// }> = async () => {
+//   let username = '265794696117814';
+//   let password = 'eDqfVeaLSlzrGFe0JvNWGL1rAAE';
 
-  let headers = new Headers();
-  console.log('cloudinaryImage')
+//   let headers = new Headers();
+//   console.log('cloudinaryImage')
 
-  var credentials = btoa(username + ':' + password);
-  var basicAuth = 'Basic ' + credentials;
+//   var credentials = btoa(username + ':' + password);
+//   var basicAuth = 'Basic ' + credentials;
 
-  const res = await axios.get<CloudinaryImage>(
-    'https://api.cloudinary.com/v1_1/dqoivoruh/resources/search',{ headers: { 'Authorization': basicAuth } }
-  );
-    console.log(`data ${res.data.resources.map((resource, index) => resource.url)}`)
-  //headers.append('Content-Type', 'text/json');
-  // headers.append('Authorization', 'Basic' + btoa(JSON.stringify(username + ":" + password)));
-  // headers.append("Access-Control-Allow-Headers",
-  //   "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  // console.log(`header ${headers['Authorization'].value}`)
-  // const res: CloudinaryImage = await fetch('https://api.cloudinary.com/v1_1/dqoivoruh/resources/search', {
-  //   method: 'GET',
-  //   headers: new Headers({ 'Authorization': 'Basic' + btoa(JSON.stringify(username + ":" + password)) }),
-  //   mode: "cors"
-  // }
-  // ).then(async (data) => console.log('json ->', await data.json(), '<-json'));
-  // const cloudinaryImage = await res.json();
-  // cloudinaryImage.resources.map((value, index) => console.log(value.url))
-  // console.log(`cloudinaryImage ${cloudinaryImage}`)
-  return { props: {} };
-};
+//   const res = await axios.get<CloudinaryImage>(
+//     'https://api.cloudinary.com/v1_1/dqoivoruh/resources/search', { headers: { 'Authorization': basicAuth } }
+//   );
+//   // console.log(`data ${res.data.resources.map((resource, index) => resource.url)}`)
+//   const groupedArray = groupBy(res.data.resources, resource => {
+//     return resource.folder
+//   })
 
-export function Cloud({
-  cloudinaryImage,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return cloudinaryImage;
-}
+//   // const {projectName: string, arrayData : Array }
+//   // console.log(`group ${groupedArray.values)}`)
+//   for (const x of groupedArray.entries()) {
+//     console.log(`data ${x}`)
+//   }
+  
+
+  
+//   return { props: { ...res.data } };
+// };
+
+// export function Cloud({
+//   cloudinaryImage,
+// }: InferGetStaticPropsType<typeof getStaticProps>) {
+//   return cloudinaryImage;
+// }
 
 export default async function HomePage() {
   const jsonData = PortopolioData;
   let starCount, views, tweetCount;
-  const image = Cloud(getStaticProps());
+  // const image = Cloud(getStaticProps());
 
   return (
     <section>
@@ -98,6 +96,7 @@ interface PortopolioProps {
   containerColor: string;
   textColor: string;
   index: number;
+  imageUrl: string;
 }
 const getImageFiles = (projectName: string) => {
   const imageFolderPath = `public/${projectName}/`;
@@ -114,6 +113,20 @@ const getImageFiles = (projectName: string) => {
   });
 
 };
+
+function groupBy(list, keyGetter): Map<string, Array<Resource>> {
+  const map = new Map();
+  list.forEach((item) => {
+    const key = keyGetter(item);
+    const collection = map.get(key);
+    if (!collection) {
+      map.set(key, [item]);
+    } else {
+      collection.push(item);
+    }
+  });
+  return map;
+}
 
 
 
